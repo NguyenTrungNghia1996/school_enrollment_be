@@ -30,6 +30,7 @@ func main() {
 	if err != nil {
 		logger.Log.Fatal("Could not initialize database connection", zap.Error(err))
 	}
+	defer database.Close()
 	// Prevent "declared and not used" error for now. `db` will be injected into repositories.
 	_ = db
 

@@ -31,38 +31,42 @@ This is the skeleton for the backend of the school enrollment system.
 
 ## How to run locally
 
-### 1. Requirements
-Ensure you have the following installed:
-- Go (1.21+)
-- MySQL server (or dockerized MySQL)
-- `golang-migrate` CLI tool (optional, for running migrations)
+## Database Setup & Migrations
 
-### 2. Setup Database
+This project explicitly uses explicitly defined SQL schema, NOT GORM AutoMigrate. 
+Your target MySQL database is structured via `golang-migrate`.
+
+### 1. Requirements
+Ensure you have the following CLI installed:
+- Go (1.21+)
+- MySQL server
+- [golang-migrate/migrate](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate) CLI tool
+
+### 2. Setup Empty Database
 Create a database in your local MySQL instance:
 ```sql
 CREATE DATABASE enrollment_db;
 ```
 
-### 3. Environment Variables
-Copy the example config to a real config file. Note that your actual `.env` will be ignored by git.
-```sh
-cp .env.example .env
-```
-Make sure to update `.env` with your actual local database credentials.
+### 3. Run Migrations
+Be sure your `.env` contains the correct DB credentials, then run the migration command passing the credentials identical to your environment (Replace `root`, `secret`, `127.0.0.1:3306`, and `enrollment_db` if you use different ones):
 
-### 4. Install Dependencies
+**Run All Up Migrations (Apply to Database):**
 ```sh
-go mod tidy
+migrate -path migrations -database "mysql://root:secret@tcp(127.0.0.1:3306)/enrollment_db" up
 ```
 
-### 5. Run the server
+**Run Down Migrations (Revert):**
 ```sh
-go run cmd/server/main.go
+migrate -path migrations -database "mysql://root:secret@tcp(127.0.0.1:3306)/enrollment_db" down 1
 ```
-The server will start on the port defined in your `.env` (default is 8080).
 
-### 6. Verify setup
-Visit the health check endpoint to confirm everything is running:
+### 4. Create further migrations
 ```sh
-curl http://localhost:8080/api/v1/health
+migrate create -ext sql -dir migrations -seq add_some_column
+```
+
+### 5. Running the Application
+```sh
+air
 ```
