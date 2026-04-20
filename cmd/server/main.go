@@ -44,6 +44,7 @@ import (
 	application_exam_score_entity "go_be_enrollment/internal/modules/applicationexamscore/entity"
 	"go_be_enrollment/internal/modules/applicationresult"
 	application_result_entity "go_be_enrollment/internal/modules/applicationresult/entity"
+	"go_be_enrollment/internal/modules/dashboard"
 	"go_be_enrollment/pkg/logger"
 
 	"github.com/gofiber/fiber/v2"
@@ -134,6 +135,7 @@ func main() {
 	examinerassignment.RegisterExaminerAssignmentRoutes(api, db, cfg)
 	applicationexamscore.RegisterApplicationExamScoreRoutes(api, db, cfg)
 	applicationresult.RegisterApplicationResultRoutes(api, db, cfg)
+	dashboard.RegisterDashboardRoutes(api, db, cfg)
 
 	// Start server
 	addr := fmt.Sprintf(":%s", cfg.AppPort)

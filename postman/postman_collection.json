@@ -2493,6 +2493,42 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "Dashboard",
+            "item": [
+                {
+                    "name": "Get Dashboard Summary",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/dashboard/summary?admission_period_id=",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "dashboard",
+                                "summary"
+                            ],
+                            "query": [
+                                {
+                                    "key": "admission_period_id",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     ],
     "variable": [
