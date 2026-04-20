@@ -40,6 +40,8 @@ import (
 	exam_room_assignment_entity "go_be_enrollment/internal/modules/examroomassignment/entity"
 	"go_be_enrollment/internal/modules/examinerassignment"
 	examiner_assignment_entity "go_be_enrollment/internal/modules/examinerassignment/entity"
+	"go_be_enrollment/internal/modules/applicationexamscore"
+	application_exam_score_entity "go_be_enrollment/internal/modules/applicationexamscore/entity"
 	"go_be_enrollment/pkg/logger"
 
 	"github.com/gofiber/fiber/v2"
@@ -88,6 +90,7 @@ func main() {
 		&examiner_entity.Examiner{},
 		&exam_room_assignment_entity.ExamRoomAssignment{},
 		&examiner_assignment_entity.ExaminerAssignment{},
+		&application_exam_score_entity.ApplicationExamScore{},
 	); err != nil {
 		logger.Log.Fatal("AutoMigrate failed for Admin modules", zap.Error(err))
 	}
@@ -126,6 +129,7 @@ func main() {
 	examiner.RegisterExaminerRoutes(api, db, cfg)
 	examroomassignment.RegisterExamRoomAssignmentRoutes(api, db, cfg)
 	examinerassignment.RegisterExaminerAssignmentRoutes(api, db, cfg)
+	applicationexamscore.RegisterApplicationExamScoreRoutes(api, db, cfg)
 
 	// Start server
 	addr := fmt.Sprintf(":%s", cfg.AppPort)
