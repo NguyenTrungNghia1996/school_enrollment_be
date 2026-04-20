@@ -25,7 +25,7 @@
                                 "health"
                             ]
                         },
-                        "description": "Ki\u1ec3m tra tr\u1ea1ng th\u00e1i ho\u1ea1t \u0111\u1ed9ng c\u1ee7a h\u1ec7 th\u1ed1ng."
+                        "description": "Kiểm tra trạng thái hoạt động của hệ thống."
                     },
                     "response": []
                 }
@@ -215,11 +215,24 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admin-users?page=1&limit=10",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admin-users"],
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admin-users"
+                            ],
                             "query": [
-                                {"key": "page", "value": "1"},
-                                {"key": "limit", "value": "10"}
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
                             ]
                         }
                     }
@@ -244,8 +257,15 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admin-users",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admin-users"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admin-users"
+                            ]
                         }
                     }
                 },
@@ -269,9 +289,23 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admin-users/:id/status",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admin-users", ":id", "status"],
-                            "variable": [{"key": "id", "value": "1"}]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admin-users",
+                                ":id",
+                                "status"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
                         }
                     }
                 },
@@ -287,9 +321,23 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admin-users/:id/role-groups",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admin-users", ":id", "role-groups"],
-                            "variable": [{"key": "id", "value": "1"}]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admin-users",
+                                ":id",
+                                "role-groups"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
                         }
                     }
                 },
@@ -313,9 +361,23 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admin-users/:id/role-groups",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admin-users", ":id", "role-groups"],
-                            "variable": [{"key": "id", "value": "1"}]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admin-users",
+                                ":id",
+                                "role-groups"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
                         }
                     }
                 }
@@ -336,11 +398,24 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/role-groups?page=1&limit=10",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "role-groups"],
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "role-groups"
+                            ],
                             "query": [
-                                {"key": "page", "value": "1"},
-                                {"key": "limit", "value": "10"}
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
                             ]
                         }
                     }
@@ -365,8 +440,15 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/role-groups",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "role-groups"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "role-groups"
+                            ]
                         }
                     }
                 },
@@ -390,9 +472,23 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/role-groups/:id/status",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "role-groups", ":id", "status"],
-                            "variable": [{"key": "id", "value": "1"}]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "role-groups",
+                                ":id",
+                                "status"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
                         }
                     }
                 },
@@ -408,9 +504,23 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/role-groups/:id/permissions",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "role-groups", ":id", "permissions"],
-                            "variable": [{"key": "id", "value": "1"}]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "role-groups",
+                                ":id",
+                                "permissions"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
                         }
                     }
                 },
@@ -434,9 +544,23 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/role-groups/:id/permissions",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "role-groups", ":id", "permissions"],
-                            "variable": [{"key": "id", "value": "1"}]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "role-groups",
+                                ":id",
+                                "permissions"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
                         }
                     }
                 }
@@ -457,8 +581,16 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/menus/tree",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "menus", "tree"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "menus",
+                                "tree"
+                            ]
                         }
                     }
                 },
@@ -474,8 +606,16 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/menus/my-menu",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "menus", "my-menu"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "menus",
+                                "my-menu"
+                            ]
                         }
                     }
                 },
@@ -499,8 +639,15 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/menus",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "menus"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "menus"
+                            ]
                         }
                     }
                 }
@@ -516,8 +663,15 @@
                         "header": [],
                         "url": {
                             "raw": "{{base_url}}/api/v1/public/provinces",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "public", "provinces"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "public",
+                                "provinces"
+                            ]
                         }
                     }
                 },
@@ -533,12 +687,28 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/provinces?page=1&limit=10&keyword=",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "provinces"],
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "provinces"
+                            ],
                             "query": [
-                                {"key": "page", "value": "1"},
-                                {"key": "limit", "value": "10"},
-                                {"key": "keyword", "value": ""}
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "keyword",
+                                    "value": ""
+                                }
                             ]
                         }
                     }
@@ -563,8 +733,15 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/provinces",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "provinces"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "provinces"
+                            ]
                         }
                     }
                 }
@@ -580,10 +757,20 @@
                         "header": [],
                         "url": {
                             "raw": "{{base_url}}/api/v1/public/ward-units?province_id=1",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "public", "ward-units"],
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "public",
+                                "ward-units"
+                            ],
                             "query": [
-                                {"key": "province_id", "value": "1"}
+                                {
+                                    "key": "province_id",
+                                    "value": "1"
+                                }
                             ]
                         }
                     }
@@ -600,13 +787,32 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/ward-units?page=1&limit=10&province_id=1&keyword=",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "ward-units"],
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "ward-units"
+                            ],
                             "query": [
-                                {"key": "page", "value": "1"},
-                                {"key": "limit", "value": "10"},
-                                {"key": "province_id", "value": "1"},
-                                {"key": "keyword", "value": ""}
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "province_id",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "keyword",
+                                    "value": ""
+                                }
                             ]
                         }
                     }
@@ -631,8 +837,15 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/ward-units",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "ward-units"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "ward-units"
+                            ]
                         }
                     }
                 }
@@ -648,8 +861,16 @@
                         "header": [],
                         "url": {
                             "raw": "{{base_url}}/api/v1/public/admission-periods/open",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "public", "admission-periods", "open"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "public",
+                                "admission-periods",
+                                "open"
+                            ]
                         }
                     }
                 },
@@ -665,13 +886,32 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admission-periods?page=1&limit=10&keyword=&school_year=2026-2027",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admission-periods"],
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admission-periods"
+                            ],
                             "query": [
-                                {"key": "page", "value": "1"},
-                                {"key": "limit", "value": "10"},
-                                {"key": "keyword", "value": ""},
-                                {"key": "school_year", "value": "2026-2027"}
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "keyword",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "school_year",
+                                    "value": "2026-2027"
+                                }
                             ]
                         }
                     }
@@ -688,8 +928,16 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admission-periods/1",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admission-periods", "1"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admission-periods",
+                                "1"
+                            ]
                         }
                     }
                 },
@@ -713,8 +961,15 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admission-periods",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admission-periods"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admission-periods"
+                            ]
                         }
                     }
                 },
@@ -738,8 +993,16 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admission-periods/1",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admission-periods", "1"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admission-periods",
+                                "1"
+                            ]
                         }
                     }
                 },
@@ -763,8 +1026,17 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/admission-periods/1/open-status",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "admission-periods", "1", "open-status"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "admission-periods",
+                                "1",
+                                "open-status"
+                            ]
                         }
                     }
                 }
@@ -785,13 +1057,32 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/user-accounts?page=1&limit=10&keyword=&is_active=true",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "user-accounts"],
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "user-accounts"
+                            ],
                             "query": [
-                                {"key": "page", "value": "1"},
-                                {"key": "limit", "value": "10"},
-                                {"key": "keyword", "value": ""},
-                                {"key": "is_active", "value": "true"}
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "keyword",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "is_active",
+                                    "value": "true"
+                                }
                             ]
                         }
                     }
@@ -808,8 +1099,16 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/user-accounts/1",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "user-accounts", "1"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "user-accounts",
+                                "1"
+                            ]
                         }
                     }
                 },
@@ -833,8 +1132,16 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/user-accounts/1",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "user-accounts", "1"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "user-accounts",
+                                "1"
+                            ]
                         }
                     }
                 },
@@ -858,8 +1165,17 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/user-accounts/1/status",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "user-accounts", "1", "status"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "user-accounts",
+                                "1",
+                                "status"
+                            ]
                         }
                     }
                 }
@@ -880,11 +1196,24 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/me/applications?page=1&limit=10",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "me", "applications"],
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "me",
+                                "applications"
+                            ],
                             "query": [
-                                {"key": "page", "value": "1"},
-                                {"key": "limit", "value": "10"}
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                }
                             ]
                         }
                     }
@@ -901,8 +1230,16 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/me/applications/1",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "me", "applications", "1"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "me",
+                                "applications",
+                                "1"
+                            ]
                         }
                     }
                 },
@@ -926,8 +1263,15 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/me/applications",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "me", "applications"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "me",
+                                "applications"
+                            ]
                         }
                     }
                 },
@@ -951,8 +1295,16 @@
                         },
                         "url": {
                             "raw": "{{base_url}}/api/v1/me/applications/1",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "me", "applications", "1"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "me",
+                                "applications",
+                                "1"
+                            ]
                         }
                     }
                 }
@@ -973,13 +1325,32 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/applications?page=1&limit=10&keyword=&application_status=Draft",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "applications"],
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "applications"
+                            ],
                             "query": [
-                                {"key": "page", "value": "1"},
-                                {"key": "limit", "value": "10"},
-                                {"key": "keyword", "value": ""},
-                                {"key": "application_status", "value": "Draft"}
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "keyword",
+                                    "value": ""
+                                },
+                                {
+                                    "key": "application_status",
+                                    "value": "Draft"
+                                }
                             ]
                         }
                     }
@@ -996,8 +1367,202 @@
                         ],
                         "url": {
                             "raw": "{{base_url}}/api/v1/admin/applications/1",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "v1", "admin", "applications", "1"]
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "applications",
+                                "1"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Subject Management",
+            "item": [
+                {
+                    "name": "Get Public Subjects",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/public/subjects",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "public",
+                                "subjects"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get List Subjects (Admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/subjects?page=1&limit=10&keyword=",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "subjects"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "keyword",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Subject Detail (Admin)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/subjects/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "subjects",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Subject",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"code\": \"TOAN\",\n    \"name\": \"Toán Học\",\n    \"display_order\": 1,\n    \"is_active\": true\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/subjects",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "subjects"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Subject",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"code\": \"TOAN\",\n    \"name\": \"Toán Học Nâng Cao\",\n    \"display_order\": 2,\n    \"is_active\": true\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/subjects/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "subjects",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Subject Status",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"is_active\": false\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/subjects/1/status",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "subjects",
+                                "1",
+                                "status"
+                            ]
                         }
                     }
                 }
