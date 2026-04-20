@@ -16,6 +16,8 @@ import (
 	"go_be_enrollment/internal/modules/menu"
 	"go_be_enrollment/internal/modules/province"
 	province_entity "go_be_enrollment/internal/modules/province/entity"
+	"go_be_enrollment/internal/modules/wardunit"
+	wardunit_entity "go_be_enrollment/internal/modules/wardunit/entity"
 	"go_be_enrollment/internal/modules/health"
 	"go_be_enrollment/pkg/logger"
 
@@ -54,6 +56,7 @@ func main() {
 		&adminentity.RoleGroupPermission{},
 		&adminentity.Menu{},
 		&province_entity.Province{},
+		&wardunit_entity.WardUnit{},
 	); err != nil {
 		logger.Log.Fatal("AutoMigrate failed for Admin modules", zap.Error(err))
 	}
@@ -80,6 +83,7 @@ func main() {
 	rolegroup.RegisterRoleGroupRoutes(api, db, cfg)
 	menu.RegisterMenuRoutes(api, db, cfg)
 	province.RegisterProvinceRoutes(api, db, cfg)
+	wardunit.RegisterWardUnitRoutes(api, db, cfg)
 
 	// Start server
 	addr := fmt.Sprintf(":%s", cfg.AppPort)
