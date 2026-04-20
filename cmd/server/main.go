@@ -18,7 +18,7 @@ func main() {
 	// Load configuration
 	cfg, err := config.Load()
 	if err != nil {
-		log.Fatalf("Failed to start application due to missing or invalid config: %v", err)
+		log.Fatalf("Failed to start application due to missing config: %v", err)
 	}
 
 	// Initialize logger
@@ -31,7 +31,6 @@ func main() {
 		logger.Log.Fatal("Could not initialize database connection", zap.Error(err))
 	}
 	defer database.Close()
-	// Prevent "declared and not used" error for now. `db` will be injected into repositories.
 	_ = db
 
 	// Create Fiber app
@@ -39,10 +38,12 @@ func main() {
 		AppName: cfg.AppName,
 	})
 
-	// Apply Middlewares
-	app.Use(middleware.RequestLogger())
-	app.Use(middleware.Recovery())
-	app.Use(middleware.CORS())
+	// Apply Middlewares globally (Order matters!)
+	app.Use(middleware.RequestID())       // Generate request ID first
+	app.Use(middleware.RequestMetadata()) // Append contextual meta second
+	app.Use(middleware.RequestLogger())   // Zap logger uses ID payload securely
+	app.Use(middleware.Recovery())        // Catch Panics internally, outputting standard ID json
+	app.Use(middleware.CORS(cfg))         // CORS dynamic configuration bound
 
 	// Register Routes
 	api := app.Group("/api/v1")
@@ -50,7 +51,7 @@ func main() {
 
 	// Start server
 	addr := fmt.Sprintf(":%s", cfg.AppPort)
-	logger.Log.Info(fmt.Sprintf("Server is starting on port %s...", cfg.AppPort))
+	logger.Log.Info("Server is starting...", zap.String("port", cfg.AppPort))
 	if err := app.Listen(addr); err != nil {
 		logger.Log.Fatal("Failed to start server", zap.Error(err))
 	}
