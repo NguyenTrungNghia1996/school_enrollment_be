@@ -31,11 +31,16 @@ type ApplicationRes struct {
 	ContactFullName    string  `json:"contact_full_name"`
 	ContactPhoneNumber string  `json:"contact_phone_number"`
 	ApplicationStatus  string  `json:"application_status"`
+	RejectReason       *string `json:"reject_reason"`
 	IsPaid             bool    `json:"is_paid"`
 	SubmittedAt        *string `json:"submitted_at"`
 	CandidateNumber    *string `json:"candidate_number"`
 	CreatedAt          string  `json:"created_at"`
 	UpdatedAt          string  `json:"updated_at"`
+}
+
+type ApplicationRejectReq struct {
+	RejectReason string `json:"reject_reason" validate:"required"`
 }
 
 type ApplicationAdminFilter struct {

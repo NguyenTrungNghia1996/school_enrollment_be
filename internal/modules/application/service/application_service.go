@@ -20,6 +20,9 @@ type ApplicationService interface {
 	GetUserDetail(id, userID uint) (*dto.ApplicationRes, error)
 	Create(userID uint, req *dto.ApplicationReq) (*dto.ApplicationRes, error)
 	Update(id, userID uint, req *dto.ApplicationReq) (*dto.ApplicationRes, error)
+	Submit(id, userID uint) error
+	Approve(id uint) error
+	Reject(id uint, req *dto.ApplicationRejectReq) error
 }
 
 type applicationService struct {
@@ -62,6 +65,7 @@ func mapToDto(app *entity.Application) dto.ApplicationRes {
 		ContactFullName:    app.ContactFullName,
 		ContactPhoneNumber: app.ContactPhoneNumber,
 		ApplicationStatus:  app.ApplicationStatus,
+		RejectReason:       app.RejectReason,
 		IsPaid:             app.IsPaid,
 		SubmittedAt:        formatDatePtr(app.SubmittedAt),
 		CandidateNumber:    app.CandidateNumber,
@@ -246,4 +250,76 @@ func (s *applicationService) Update(id, userID uint, req *dto.ApplicationReq) (*
 
 	res := mapToDto(app)
 	return &res, nil
+}
+
+func (s *applicationService) Submit(id, userID uint) error {
+	app, err := s.repo.GetUserDetail(id, userID)
+	if err != nil {
+		return errors.New("không tìm thấy hồ sơ của bạn")
+	}
+
+	if app.ApplicationStatus != "Draft" {
+		return errors.New("hồ sơ này không ở trạng thái nháp")
+	}
+
+	if app.CandidateFullName == "" || app.DateOfBirth == nil || app.AdmissionPeriodID == 0 {
+		return errors.New("hồ sơ thiếu thông tin bắt buộc, không thể gửi")
+	}
+	
+	// TODO: Kiểm tra tài liệu bắt buộc (ví dụ query bảng thư mục hồ sơ) tại đây
+
+	now := time.Now()
+	app.ApplicationStatus = "Submitted"
+	app.SubmittedAt = &now
+
+	// TODO: Audit log submit application
+
+	if err := s.repo.Update(app); err != nil {
+		return errors.New("lỗi khi gửi hồ sơ")
+	}
+
+	return nil
+}
+
+func (s *applicationService) Approve(id uint) error {
+	app, err := s.repo.GetAdminDetail(id)
+	if err != nil {
+		return errors.New("không tìm thấy hồ sơ")
+	}
+
+	if app.ApplicationStatus != "Submitted" {
+		return errors.New("chỉ có thể duyệt hồ sơ khi đang ở trạng thái đã gửi (Submitted)")
+	}
+
+	app.ApplicationStatus = "Approved"
+
+	// TODO: Audit log approve application
+
+	if err := s.repo.Update(app); err != nil {
+		return errors.New("lỗi duyệt hồ sơ")
+	}
+
+	return nil
+}
+
+func (s *applicationService) Reject(id uint, req *dto.ApplicationRejectReq) error {
+	app, err := s.repo.GetAdminDetail(id)
+	if err != nil {
+		return errors.New("không tìm thấy hồ sơ")
+	}
+
+	if app.ApplicationStatus != "Submitted" {
+		return errors.New("chỉ có thể từ chối hồ sơ khi đang ở trạng thái đã gửi (Submitted)")
+	}
+
+	app.ApplicationStatus = "Rejected"
+	app.RejectReason = &req.RejectReason
+
+	// TODO: Audit log reject application
+
+	if err := s.repo.Update(app); err != nil {
+		return errors.New("lỗi từ chối hồ sơ")
+	}
+
+	return nil
 }

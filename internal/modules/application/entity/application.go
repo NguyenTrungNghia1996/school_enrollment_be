@@ -18,6 +18,7 @@ type Application struct {
 	ContactFullName    string     `gorm:"size:255;not null"`
 	ContactPhoneNumber string     `gorm:"size:20;not null"`
 	ApplicationStatus  string     `gorm:"type:enum('Draft','Submitted','Approved','Rejected');default:'Draft'"`
+	RejectReason       *string    `gorm:"type:text"`
 	IsPaid             bool       `gorm:"default:false"`
 	SubmittedAt        *time.Time 
 	CandidateNumber    *string    `gorm:"size:50;uniqueIndex:idx_admission_candidate"`

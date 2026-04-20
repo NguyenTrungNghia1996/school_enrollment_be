@@ -25,6 +25,45 @@ func NewApplicationHandler(service service.ApplicationService) *ApplicationHandl
 
 // ---------------- Admin Handlers ----------------
 
+func (h *ApplicationHandler) Approve(c *fiber.Ctx) error {
+	id, err := c.ParamsInt("id")
+	if err != nil || id <= 0 {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "BAD_REQUEST", "ID không hợp lệ", nil)
+	}
+
+	err = h.service.Approve(uint(id))
+	if err != nil {
+		logger.Log.Error("ApplicationHandler.Approve", zap.Error(err))
+		return httpresponse.Error(c, fiber.StatusBadRequest, "BAD_REQUEST", err.Error(), nil)
+	}
+
+	return httpresponse.Success(c, fiber.StatusOK, "Đã duyệt hồ sơ thành công", nil)
+}
+
+func (h *ApplicationHandler) Reject(c *fiber.Ctx) error {
+	id, err := c.ParamsInt("id")
+	if err != nil || id <= 0 {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "BAD_REQUEST", "ID không hợp lệ", nil)
+	}
+
+	req := new(dto.ApplicationRejectReq)
+	if err := c.BodyParser(req); err != nil {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "BAD_REQUEST", "Dữ liệu không hợp lệ", nil)
+	}
+
+	if err := h.val.Struct(req); err != nil {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "BAD_REQUEST", "Vui lòng nhập lý do từ chối", nil)
+	}
+
+	err = h.service.Reject(uint(id), req)
+	if err != nil {
+		logger.Log.Error("ApplicationHandler.Reject", zap.Error(err))
+		return httpresponse.Error(c, fiber.StatusBadRequest, "BAD_REQUEST", err.Error(), nil)
+	}
+
+	return httpresponse.Success(c, fiber.StatusOK, "Đã từ chối hồ sơ", nil)
+}
+
 func (h *ApplicationHandler) GetAdminList(c *fiber.Ctx) error {
 	filter := new(dto.ApplicationAdminFilter)
 	if err := c.QueryParser(filter); err != nil {
@@ -157,4 +196,24 @@ func (h *ApplicationHandler) Update(c *fiber.Ctx) error {
 	}
 
 	return httpresponse.Success(c, fiber.StatusOK, "Cập nhật hồ sơ thành công", res)
+}
+
+func (h *ApplicationHandler) Submit(c *fiber.Ctx) error {
+	userID := getUserID(c)
+	if userID == 0 {
+		return httpresponse.Error(c, fiber.StatusUnauthorized, "UNAUTHORIZED", "Vui lòng đăng nhập lại", nil)
+	}
+
+	id, err := c.ParamsInt("id")
+	if err != nil || id <= 0 {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "BAD_REQUEST", "ID không hợp lệ", nil)
+	}
+
+	err = h.service.Submit(uint(id), userID)
+	if err != nil {
+		logger.Log.Error("ApplicationHandler.Submit", zap.Error(err))
+		return httpresponse.Error(c, fiber.StatusBadRequest, "BAD_REQUEST", err.Error(), nil)
+	}
+
+	return httpresponse.Success(c, fiber.StatusOK, "Gửi hồ sơ thành công", nil)
 }

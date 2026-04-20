@@ -19,10 +19,13 @@ func RegisterApplicationRoutes(api fiber.Router, db *gorm.DB, cfg *config.Config
 	adminGroup := api.Group("/admin/applications", middleware.AdminAuth(cfg))
 	adminGroup.Get("/", h.GetAdminList)
 	adminGroup.Get("/:id", h.GetAdminDetail)
+	adminGroup.Post("/:id/approve", h.Approve)
+	adminGroup.Post("/:id/reject", h.Reject)
 
 	userGroup := api.Group("/me/applications", middleware.UserAuth(cfg))
 	userGroup.Get("/", h.GetUserList)
 	userGroup.Get("/:id", h.GetUserDetail)
 	userGroup.Post("/", h.Create)
 	userGroup.Put("/:id", h.Update)
+	userGroup.Post("/:id/submit", h.Submit)
 }
