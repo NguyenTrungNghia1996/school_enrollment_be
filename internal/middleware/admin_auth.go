@@ -31,6 +31,7 @@ func AdminAuth(cfg *config.Config) fiber.Handler {
 
 		c.Locals("admin_id", claims.AdminID)
 		c.Locals("admin_username", claims.Username)
+		c.Locals("admin_is_super_admin", claims.IsSuperAdmin)
 
 		return c.Next()
 	}

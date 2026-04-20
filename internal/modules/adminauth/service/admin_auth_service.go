@@ -38,7 +38,7 @@ func (s *adminAuthService) Login(req *dto.AdminLoginRequest) (*dto.AdminLoginRes
 		return nil, errors.New("tên đăng nhập hoặc mật khẩu không đúng")
 	}
 
-	token, err := utils.GenerateAdminToken(admin.ID, admin.Username, s.cfg.JWTSecret, s.cfg.JWTExpiresIn)
+	token, err := utils.GenerateAdminToken(admin.ID, admin.Username, admin.IsSuperAdmin, s.cfg.JWTSecret, s.cfg.JWTExpiresIn)
 	if err != nil {
 		return nil, errors.New("lỗi tạo token")
 	}

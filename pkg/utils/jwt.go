@@ -13,9 +13,10 @@ type CustomUserClaims struct {
 }
 
 type CustomAdminClaims struct {
-	AdminID  uint   `json:"admin_id"`
-	Username string `json:"username"`
-	Role     string `json:"role"`
+	AdminID      uint   `json:"admin_id"`
+	Username     string `json:"username"`
+	Role         string `json:"role"`
+	IsSuperAdmin bool   `json:"is_super_admin"`
 	jwt.RegisteredClaims
 }
 
@@ -45,11 +46,12 @@ func ParseUserToken(tokenString string, secret string) (*CustomUserClaims, error
 	return nil, jwt.ErrSignatureInvalid
 }
 
-func GenerateAdminToken(adminID uint, username string, secret string, duration time.Duration) (string, error) {
+func GenerateAdminToken(adminID uint, username string, isSuperAdmin bool, secret string, duration time.Duration) (string, error) {
 	claims := CustomAdminClaims{
-		AdminID:  adminID,
-		Username: username,
-		Role:     "admin",
+		AdminID:      adminID,
+		Username:     username,
+		Role:         "admin",
+		IsSuperAdmin: isSuperAdmin,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(duration)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),

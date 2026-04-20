@@ -172,6 +172,31 @@
                             ]
                         }
                     }
+                },
+                {
+                    "name": "Admin Protected Settings",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/auth/settings",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "admin",
+                                "auth",
+                                "settings"
+                            ]
+                        }
+                    }
                 }
             ]
         }

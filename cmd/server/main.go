@@ -41,9 +41,15 @@ func main() {
 		logger.Log.Fatal("AutoMigrate failed for UserAccount", zap.Error(err))
 	}
 	
-	// AutoMigrate cho AdminUser
-	if err := db.AutoMigrate(&adminentity.AdminUser{}); err != nil {
-		logger.Log.Fatal("AutoMigrate failed for AdminUser", zap.Error(err))
+	// AutoMigrate cho AdminUser và quyền hạn
+	if err := db.AutoMigrate(
+		&adminentity.AdminUser{},
+		&adminentity.RoleGroup{},
+		&adminentity.AdminUserRoleGroup{},
+		&adminentity.RoleGroupPermission{},
+		&adminentity.Menu{},
+	); err != nil {
+		logger.Log.Fatal("AutoMigrate failed for AdminUser and Permissions", zap.Error(err))
 	}
 	_ = db
 

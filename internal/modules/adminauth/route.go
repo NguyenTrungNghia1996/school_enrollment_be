@@ -13,7 +13,11 @@ import (
 
 func RegisterAdminAuthRoutes(router fiber.Router, db *gorm.DB, cfg *config.Config) {
 	repo := repository.NewAdminUserRepository(db)
+	permRepo := repository.NewPermissionRepository(db)
+
 	svc := service.NewAdminAuthService(repo, cfg)
+	permSvc := service.NewPermissionService(permRepo)
+
 	hdl := handler.NewAdminAuthHandler(svc)
 
 	adminAuthGroup := router.Group("/admin/auth")
@@ -24,5 +28,13 @@ func RegisterAdminAuthRoutes(router fiber.Router, db *gorm.DB, cfg *config.Confi
 		protected := adminAuthGroup.Group("")
 		protected.Use(middleware.AdminAuth(cfg))
 		protected.Get("/me", hdl.GetMe)
+
+		// Ví dụ route bảo vệ bằng PermissionGuard (Key: 'system_settings', Bit: 0)
+		protected.Get("/settings", middleware.PermissionGuard(permSvc, "system_settings", 0), func(c *fiber.Ctx) error {
+			return c.JSON(fiber.Map{
+				"status": "success",
+				"message": "Bạn có quyền truy cập vào thông tin cấu hình hệ thống (bit 0)!",
+			})
+		})
 	}
 }
