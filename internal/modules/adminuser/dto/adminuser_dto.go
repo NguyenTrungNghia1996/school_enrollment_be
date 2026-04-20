@@ -50,3 +50,13 @@ type PaginatedAdminUserRes struct {
 	Limit      int            `json:"limit"`
 	TotalPages int            `json:"total_pages"`
 }
+
+type AdminUserRoleGroupReq struct {
+	RoleGroupIDs []uint `json:"role_group_ids" validate:"required"`
+}
+
+type AssignedRoleGroupRes struct {
+	ID   uint   `json:"id"`
+	Code string `json:"code"`
+	Name string `json:"name"`
+}

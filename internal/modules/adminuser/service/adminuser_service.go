@@ -18,6 +18,8 @@ type AdminUserService interface {
 	Update(id uint, req *dto.AdminUserUpdateReq) (*dto.AdminUserRes, error)
 	UpdateStatus(id uint, req *dto.AdminUserStatusReq) error
 	ResetPassword(id uint, req *dto.AdminUserResetPassReq) error
+	GetRoleGroups(id uint) ([]dto.AssignedRoleGroupRes, error)
+	UpdateRoleGroups(id uint, req *dto.AdminUserRoleGroupReq) ([]dto.AssignedRoleGroupRes, error)
 }
 
 type adminUserService struct {
@@ -156,4 +158,56 @@ func (s *adminUserService) ResetPassword(id uint, req *dto.AdminUserResetPassReq
 		return errors.New("lỗi reset mật khẩu")
 	}
 	return nil
+}
+
+func (s *adminUserService) GetRoleGroups(id uint) ([]dto.AssignedRoleGroupRes, error) {
+	roles, err := s.repo.GetAssignedRoleGroups(id)
+	if err != nil {
+		return nil, errors.New("lỗi lấy danh sách nhóm quyền")
+	}
+
+	var res []dto.AssignedRoleGroupRes
+	for _, r := range roles {
+		res = append(res, dto.AssignedRoleGroupRes{
+			ID:   r.ID,
+			Code: r.Code,
+			Name: r.Name,
+		})
+	}
+	if res == nil {
+		res = []dto.AssignedRoleGroupRes{}
+	}
+	return res, nil
+}
+
+func (s *adminUserService) UpdateRoleGroups(id uint, req *dto.AdminUserRoleGroupReq) ([]dto.AssignedRoleGroupRes, error) {
+	// Kiểm tra admin có tồn tại hay không
+	_, err := s.repo.FindByID(id)
+	if err != nil {
+		return nil, errors.New("không tìm thấy admin")
+	}
+
+	// Lọc bỏ các giá trị trùng lặp trong input list
+	uniqueIDs := make(map[uint]bool)
+	var finalIDs []uint
+	for _, rid := range req.RoleGroupIDs {
+		if !uniqueIDs[rid] {
+			uniqueIDs[rid] = true
+			finalIDs = append(finalIDs, rid)
+		}
+	}
+
+	// Kiểm tra xem tất cả các role group ID có thực sự tồn tại hợp lệ hay không
+	ok, err := s.repo.CheckRoleGroupsExist(finalIDs)
+	if err != nil || !ok {
+		return nil, errors.New("một hoặc nhiều nhóm quyền không hợp lệ")
+	}
+
+	// Cập nhật bằng transaction trong repo
+	if err := s.repo.ReplaceRoleGroups(id, finalIDs); err != nil {
+		return nil, errors.New("lỗi cập nhật nhóm quyền")
+	}
+
+	// Trả về danh sách mới nhất
+	return s.GetRoleGroups(id)
 }

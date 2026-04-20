@@ -16,6 +16,9 @@ type AdminUserRepository interface {
 	Update(admin *entity.AdminUser) error
 	CheckUsernameExists(username string, excludeID uint) bool
 	CheckEmailExists(email string, excludeID uint) bool
+	GetAssignedRoleGroups(adminID uint) ([]entity.RoleGroup, error)
+	ReplaceRoleGroups(adminID uint, roleGroupIDs []uint) error
+	CheckRoleGroupsExist(roleGroupIDs []uint) (bool, error)
 }
 
 type adminUserRepository struct {
@@ -87,4 +90,49 @@ func (r *adminUserRepository) CheckEmailExists(email string, excludeID uint) boo
 	var count int64
 	r.db.Model(&entity.AdminUser{}).Where("email = ? AND email != '' AND id != ?", email, excludeID).Count(&count)
 	return count > 0
+}
+
+func (r *adminUserRepository) GetAssignedRoleGroups(adminID uint) ([]entity.RoleGroup, error) {
+	var roles []entity.RoleGroup
+	err := r.db.Joins("JOIN admin_user_role_groups ON admin_user_role_groups.role_group_id = role_groups.id").
+		Where("admin_user_role_groups.admin_user_id = ?", adminID).
+		Find(&roles).Error
+	return roles, err
+}
+
+func (r *adminUserRepository) ReplaceRoleGroups(adminID uint, roleGroupIDs []uint) error {
+	return r.db.Transaction(func(tx *gorm.DB) error {
+		// Xóa các nhóm quyền cũ
+		if err := tx.Where("admin_user_id = ?", adminID).Delete(&entity.AdminUserRoleGroup{}).Error; err != nil {
+			return err
+		}
+
+		// Thêm mới
+		if len(roleGroupIDs) > 0 {
+			var insertData []entity.AdminUserRoleGroup
+			for _, rid := range roleGroupIDs {
+				insertData = append(insertData, entity.AdminUserRoleGroup{
+					AdminUserID: adminID,
+					RoleGroupID: rid,
+				})
+			}
+			if err := tx.Create(&insertData).Error; err != nil {
+				return err
+			}
+		}
+
+		return nil
+	})
+}
+
+func (r *adminUserRepository) CheckRoleGroupsExist(roleGroupIDs []uint) (bool, error) {
+	if len(roleGroupIDs) == 0 {
+		return true, nil
+	}
+	var count int64
+	err := r.db.Model(&entity.RoleGroup{}).Where("id IN ?", roleGroupIDs).Count(&count).Error
+	if err != nil {
+		return false, err
+	}
+	return count == int64(len(roleGroupIDs)), nil
 }

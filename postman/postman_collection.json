@@ -274,6 +274,50 @@
                             "variable": [{"key": "id", "value": "1"}]
                         }
                     }
+                },
+                {
+                    "name": "Get Admin Assigned Role Groups",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/admin-users/:id/role-groups",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "admin-users", ":id", "role-groups"],
+                            "variable": [{"key": "id", "value": "1"}]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Admin Role Groups",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"role_group_ids\": [1, 2]\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/admin-users/:id/role-groups",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "admin-users", ":id", "role-groups"],
+                            "variable": [{"key": "id", "value": "1"}]
+                        }
+                    }
                 }
             ]
         },

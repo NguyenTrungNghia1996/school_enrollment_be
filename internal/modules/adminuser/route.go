@@ -38,4 +38,7 @@ func RegisterAdminUserRoutes(router fiber.Router, db *gorm.DB, cfg *config.Confi
 	adminUserGroup.Put("/:id", hdl.Update)
 	adminUserGroup.Patch("/:id/status", hdl.UpdateStatus)
 	adminUserGroup.Patch("/:id/reset-password", hdl.ResetPassword)
+	
+	adminUserGroup.Get("/:id/role-groups", hdl.GetRoleGroups)
+	adminUserGroup.Put("/:id/role-groups", hdl.UpdateRoleGroups)
 }

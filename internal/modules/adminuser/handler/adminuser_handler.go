@@ -120,3 +120,36 @@ func (h *AdminUserHandler) ResetPassword(c *fiber.Ctx) error {
 
 	return httpresponse.Success(c, fiber.StatusOK, "Khôi phục mật khẩu thành công", nil)
 }
+
+func (h *AdminUserHandler) GetRoleGroups(c *fiber.Ctx) error {
+	id, err := strconv.Atoi(c.Params("id"))
+	if err != nil {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "INVALID_PARAM", "ID không hợp lệ", nil)
+	}
+
+	res, err := h.svc.GetRoleGroups(uint(id))
+	if err != nil {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "GET_ROLE_GROUPS_FAILED", err.Error(), nil)
+	}
+
+	return httpresponse.Success(c, fiber.StatusOK, "Lấy danh sách nhóm quyền thành công", res)
+}
+
+func (h *AdminUserHandler) UpdateRoleGroups(c *fiber.Ctx) error {
+	id, err := strconv.Atoi(c.Params("id"))
+	if err != nil {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "INVALID_PARAM", "ID không hợp lệ", nil)
+	}
+
+	var req dto.AdminUserRoleGroupReq
+	if err := c.BodyParser(&req); err != nil {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "INVALID_BODY", "Dữ liệu không hợp lệ", nil)
+	}
+
+	res, err := h.svc.UpdateRoleGroups(uint(id), &req)
+	if err != nil {
+		return httpresponse.Error(c, fiber.StatusBadRequest, "UPDATE_ROLE_GROUPS_FAILED", err.Error(), nil)
+	}
+
+	return httpresponse.Success(c, fiber.StatusOK, "Cập nhật nhóm quyền thành công", res)
+}

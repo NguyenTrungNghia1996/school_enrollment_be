@@ -15,6 +15,7 @@ type RoleGroup struct {
 type AdminUserRoleGroup struct {
 	AdminUserID uint `gorm:"primaryKey"`
 	RoleGroupID uint `gorm:"primaryKey"`
+	CreatedAt   time.Time
 }
 
 type RoleGroupPermission struct {
