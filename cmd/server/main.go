@@ -9,6 +9,8 @@ import (
 	"go_be_enrollment/internal/middleware"
 	"go_be_enrollment/internal/modules/auth"
 	"go_be_enrollment/internal/modules/auth/entity"
+	"go_be_enrollment/internal/modules/adminauth"
+	adminentity "go_be_enrollment/internal/modules/adminauth/entity"
 	"go_be_enrollment/internal/modules/health"
 	"go_be_enrollment/pkg/logger"
 
@@ -36,7 +38,12 @@ func main() {
 	
 	// AutoMigrate cho UserAccount
 	if err := db.AutoMigrate(&entity.UserAccount{}); err != nil {
-		logger.Log.Fatal("AutoMigrate failed", zap.Error(err))
+		logger.Log.Fatal("AutoMigrate failed for UserAccount", zap.Error(err))
+	}
+	
+	// AutoMigrate cho AdminUser
+	if err := db.AutoMigrate(&adminentity.AdminUser{}); err != nil {
+		logger.Log.Fatal("AutoMigrate failed for AdminUser", zap.Error(err))
 	}
 	_ = db
 
@@ -56,6 +63,7 @@ func main() {
 	api := app.Group("/api/v1")
 	health.RegisterRoutes(api)
 	auth.RegisterUserAuthRoutes(api, db, cfg)
+	adminauth.RegisterAdminAuthRoutes(api, db, cfg)
 
 	// Start server
 	addr := fmt.Sprintf(":%s", cfg.AppPort)
