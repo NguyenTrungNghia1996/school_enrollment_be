@@ -8,6 +8,7 @@ import (
 	"go_be_enrollment/internal/database"
 	"go_be_enrollment/internal/middleware"
 	"go_be_enrollment/internal/modules/auth"
+	"go_be_enrollment/internal/modules/auth/entity"
 	"go_be_enrollment/internal/modules/health"
 	"go_be_enrollment/pkg/logger"
 
@@ -32,6 +33,11 @@ func main() {
 		logger.Log.Fatal("Could not initialize database connection", zap.Error(err))
 	}
 	defer database.Close()
+	
+	// AutoMigrate cho UserAccount
+	if err := db.AutoMigrate(&entity.UserAccount{}); err != nil {
+		logger.Log.Fatal("AutoMigrate failed", zap.Error(err))
+	}
 	_ = db
 
 	// Create Fiber app
