@@ -1,0 +1,29 @@
+.git
+.gitignore
+.env
+.env.*
+.idea/
+.vscode/
+
+# Build artifacts
+tmp/
+temp/
+bin/
+build/
+dist/
+
+# Outputs
+*.exe
+*.out
+*.log
+*.test
+
+# Go workspace
+go.work
+go.work.sum
+
+# Dev tools / Docs
+README.md
+docs/
+postman/
+*.py
