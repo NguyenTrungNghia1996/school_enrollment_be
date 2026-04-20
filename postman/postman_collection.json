@@ -199,6 +199,83 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "Admin User Management",
+            "item": [
+                {
+                    "name": "Get List Admin Users",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/admin-users?page=1&limit=10",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "admin-users"],
+                            "query": [
+                                {"key": "page", "value": "1"},
+                                {"key": "limit", "value": "10"}
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Admin User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"admin2\",\n    \"password\": \"adminpwd2\",\n    \"full_name\": \"Admin Two\",\n    \"is_super_admin\": false\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/admin-users",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "admin-users"]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Status Admin User",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{admin_access_token}}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"is_active\": false\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/admin/admin-users/:id/status",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "v1", "admin", "admin-users", ":id", "status"],
+                            "variable": [{"key": "id", "value": "1"}]
+                        }
+                    }
+                }
+            ]
         }
     ],
     "variable": [

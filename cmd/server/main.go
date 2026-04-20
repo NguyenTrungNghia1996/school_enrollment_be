@@ -11,6 +11,7 @@ import (
 	"go_be_enrollment/internal/modules/auth/entity"
 	"go_be_enrollment/internal/modules/adminauth"
 	adminentity "go_be_enrollment/internal/modules/adminauth/entity"
+	"go_be_enrollment/internal/modules/adminuser"
 	"go_be_enrollment/internal/modules/health"
 	"go_be_enrollment/pkg/logger"
 
@@ -70,6 +71,7 @@ func main() {
 	health.RegisterRoutes(api)
 	auth.RegisterUserAuthRoutes(api, db, cfg)
 	adminauth.RegisterAdminAuthRoutes(api, db, cfg)
+	adminuser.RegisterAdminUserRoutes(api, db, cfg)
 
 	// Start server
 	addr := fmt.Sprintf(":%s", cfg.AppPort)
