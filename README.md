@@ -70,3 +70,19 @@ migrate create -ext sql -dir migrations -seq add_some_column
 ```sh
 air
 ```
+
+### 6. Seeding Data
+
+After running database migrations, you can execute the available seeder scripts to populate the database with initial required data.
+
+**Seed Super Admin Account:**
+Creates a default Super Admin account (`admin` / `adminpwd`). This script aborts securely if admin records already exist.
+```sh
+go run cmd/seeder/main.go
+```
+
+**Import Provinces & Ward Units:**
+Fetches and imports the 2025 Administrative Divisions dataset from `https://provinces.open-api.vn/api/v2` (Tỉnh/Thành/Huyện/Xã).
+```sh
+go run cmd/seeder_provinces/main.go
+```
