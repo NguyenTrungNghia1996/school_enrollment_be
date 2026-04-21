@@ -1,7 +1,7 @@
 services:
   app:
     image: trungnghia1996/school_enrollment_be:latest
-    container_name: go_be_enrollment_app
+    container_name: school_enrollment_be
     ports:
       - "8080:8080"
     environment:
